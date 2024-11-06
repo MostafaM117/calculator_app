@@ -1,6 +1,5 @@
 import 'package:calculator_app/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:expressions/expressions.dart';
 class Calculatorpage extends StatefulWidget {
@@ -17,22 +16,11 @@ class _CalculatorpageState extends State<Calculatorpage> {
   double num1 = 0.0;
   double num2 = 0.0;
   
-//   final List<TextInputFormatter> _inputFormatters = [
-//   FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*'))
-// ];
 void buttonPressed(String buttonText){
   setState(() {
   if(buttonText == "AC"){
   _displayText  = "";
   }
-  // else if (buttonText == "+" || buttonText == "-" || buttonText == "÷" || buttonText == "×"){
-  //   if (_operation.isNotEmpty) {
-  //       equalbutton();
-  //     }
-  //   num1 = double.tryParse(_displayText)?? 0.0;
-  //   _operation = buttonText;
-  //   _displayText = "";
-  // }
   else if (buttonText == "⌫") {
     if (_displayText.length > 1) {
           _displayText = _displayText.substring(0, _displayText.length - 1);
@@ -77,43 +65,6 @@ void evaluateExpression(){
   }
 }
 
-// void equalbutton(){
-//   setState(() {
-//     num2 = double.tryParse(_displayText)?? 0.0;
-//     double result;
-//     switch (_operation){
-//       case "+":
-//       result = (num1 + num2);
-//       break;
-//       case"-":
-//       result = (num1 - num2);
-//       break;
-//       case "×":
-//       result = (num1 * num2);
-//       // case "%":
-//       //   if (_operation.isNotEmpty && _operation != "%"){
-//       //     _result = (num1 *(num2/100)).toString();
-//       //   }
-//       //   else{
-//       //     _result = (num1 /100).toString();
-//       //   }
-//       // break;
-//       case"÷":
-//       result = num2 != 0 ? num1 / num2 : double.nan;
-//       break;
-//       default:
-//       return;
-//     }
-//     _displayText = result.toString();
-//       if (result == result.toInt()) {
-//         _displayText = result.toInt().toString();
-//       }
-//     _operation = "";
-//     num1 = 0.0;
-//     num2 = 0.0;
-//   });
-    
-// }
 Widget numsButton(String buttonText){
   return Expanded(
     child: RawMaterialButton(
@@ -180,7 +131,6 @@ Widget actionButton(String buttonText ){
                 reverse: true,
                 child: Text(
                   _operation.isNotEmpty ? "$num1 $_operation $_displayText" : _displayText,
-                  // textAlign: TextAlign.right,
                   style: const TextStyle(
                     fontSize: 42.0,
                     fontWeight: FontWeight.bold,),
